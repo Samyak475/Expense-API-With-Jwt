@@ -5,12 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
-@Data
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthReqDto {
-    private String username;
-    private String password;
-
+@Data
+@Builder
+public class RefreshTokenDto {
+    private String token;
+    private LocalDateTime expirationTime;
 }

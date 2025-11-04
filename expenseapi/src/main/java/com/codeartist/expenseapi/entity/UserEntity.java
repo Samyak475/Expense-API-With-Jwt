@@ -25,14 +25,15 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+//    private String name;
     @Column(nullable = false,unique = true)
-    private String email;
+    private String username;
     @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user", cascade =CascadeType.ALL ,fetch = FetchType.LAZY)
     List<ExpenseEntity> expenseEntityList= new ArrayList<>();
+
 
     @Override
     public String getPassword() {
@@ -46,7 +47,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
