@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -13,6 +14,6 @@ import java.util.Date;
 public class ExpenseResponseDto {
     private String name;
     private String amount;
-    private Date stDate;
-    private Date    enDate;
+    private LocalDate stDate;
+    private LocalDate    enDate;
 }
