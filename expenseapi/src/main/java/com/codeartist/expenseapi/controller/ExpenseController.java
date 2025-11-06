@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -44,7 +45,13 @@ public class ExpenseController {
                                                   @RequestBody(required = false) GetExpenseDto getExpenseDto)
     {
         try {
-        List<ExpenseResponseDto> responseDtos =expenseService.getExpenses(type,getExpenseDto.getStDate(),getExpenseDto.getEdDate());
+            LocalDate stDate = LocalDate.now();
+            LocalDate edDate = LocalDate.now();
+            if(getExpenseDto != null){
+                stDate  = getExpenseDto.getStDate();
+                edDate  = getExpenseDto.getEdDate();
+            }
+        List<ExpenseResponseDto> responseDtos =expenseService.getExpenses(type,stDate,edDate);
         return new ResponseEntity<>(responseDtos,HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
